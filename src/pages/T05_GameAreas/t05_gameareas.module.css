@@ -1,0 +1,239 @@
+.areasPage {
+    background: var(--bg-main);
+    color: var(--text-main);
+    padding: 20px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-xl);
+    animation: slideUp 0.4s ease-out;
+    position: relative;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.closeBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, background-color 0.2s;
+    z-index: 100;
+}
+
+.closeBtn:hover {
+    color: #ffffff;
+    border-color: #ff3e3e;
+    background-color: #ff3e3e;
+}
+
+.statsContainer {
+    margin-bottom: 40px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    background-color: var(--bg-card); /* Same as balloon background */
+}
+
+.statsContainer legend {
+    text-align: center;
+    padding: 0 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--char-accent);
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.statField {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 10px;
+    text-align: center;
+}
+
+.statField legend {
+    color: var(--char-accent);
+    font-weight: 800;
+    font-size: 0.8rem;
+    padding: 0 10px;
+    text-transform: uppercase;
+}
+
+.statValue {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #fff;
+}
+
+.areasList {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.areaBlock {
+    background: var(--bg-card);
+    border: 1px solid rgba(0, 128, 0, 0.377);
+    border-radius: var(--radius-md);
+    padding: 0;
+    overflow: hidden;
+    transition: border-color 0.3s;
+}
+
+.areaLegend {
+    width: 100%;
+    gap: 10px;
+    justify-content: center;
+}
+
+.areaInfoLegend {
+    font-size: 0.90rem;
+    font-weight: 700;
+    color: var(--char-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 14px;
+    background-color: var(--bg-secondary);
+    border-radius: 6px;
+    border: 0.5px solid var(--char-accent);
+    display: flex;
+    align-items: center;
+}
+
+.areaTitleLegend {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.65);
+    text-transform: capitalize;
+    margin-left: 4px;
+}
+
+.areaSword {
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.9);
+    border: 1px solid rgba(255,255,255,0.15);
+    margin-left: 10px;
+}
+
+.areaContent {
+    display: flex;
+    min-height: 160px;
+}
+
+.reverseRow .areaContent {
+    flex-direction: row-reverse;
+}
+
+.areaTexts {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.textRow {
+    flex: 1;
+    padding: 15px 20px;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    line-height: 1.6;
+}
+
+.textRow:first-child {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.areaMedia {
+    width: 200px;
+    background: rgba(0, 0, 0, 0.4);
+    border-left: 1px solid var(--border-color);
+    display: flex;
+    position: relative;
+    border-bottom: 1px solid transparent; /* Colored by status */
+}
+
+.reverseRow .areaMedia {
+    border-left: none;
+    border-right: 1px solid var(--border-color);
+}
+
+.statusBadge {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    left: 8px;
+    padding: 3px 12px;
+    border-radius: 20px;
+    background-color: transparent;
+    border: 2px solid transparent;
+    z-index: 10;
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: lowercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0px 0px 1px #000;
+    transition: all 0.2s;
+}
+
+.status_blue   { border-color: #2b86ff; color: #2b86ff; box-shadow: 0 0 10px rgba(43, 134, 255, 0.3); }
+.status_red    { border-color: #ff3e3e; color: #ff3e3e; box-shadow: 0 0 10px rgba(255, 62, 62, 0.3); }
+.status_yellow { border-color: #ffd700; color: #ffd700; box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+.status_purple { border-color: #9d00ff; color: #9d00ff; box-shadow: 0 0 15px rgba(157, 0, 255, 0.5); }
+
+.media_blue   { border-bottom-color: #2b86ff !important; }
+.media_red    { border-bottom-color: #ff3e3e !important; }
+.media_yellow { border-bottom-color: #ffd700 !important; }
+.media_purple { border-bottom-color: #9d00ff !important; }
+
+.areaImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.imgPlaceholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.3;
+    font-weight: 900;
+}
+
+.noData {
+    padding: 40px;
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+}

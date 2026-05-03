@@ -1,0 +1,177 @@
+/* ── CharacterSelector — LEFT sidebar ─────────────────
+   Edge tabs are in the PARENT (T03_Characters body).
+   ─────────────────────────────────────────────────── */
+
+.sidebar {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    transition: width 0.2s ease, opacity 0.2s ease;
+    overflow: hidden;   /* clips content when closing */
+}
+
+.sidebarOpen   { width: 220px; opacity: 1; }
+.sidebarClosed {
+    width: 0;
+    opacity: 0;
+    border-right: none;
+    /* NO pointer-events: none — handled by width collapsing */
+}
+
+
+/* ── Header ── */
+
+.sidebarHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 10px 8px 8px 10px;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sidebarTitle {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    white-space: nowrap;
+    flex: 1;
+}
+
+/* Lock button inside header */
+.lockBtn {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    font-size: 0.65rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color var(--transition), background-color var(--transition);
+}
+
+.lockBtn:hover   { border-color: var(--char-accent); }
+.lockBtnActive   { border-color: var(--char-accent) !important; background-color: var(--char-accent-dim) !important; }
+
+
+/* ── Scrollable list ── */
+
+.charList {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.charList::-webkit-scrollbar { width: 3px; }
+.charList::-webkit-scrollbar-thumb {
+    background: var(--border-hover);
+    border-radius: 2px;
+}
+
+
+/* ── Individual item: image + name ── */
+
+.charItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-card);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: border-color var(--transition), background-color var(--transition);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.charItem:hover  { border-color: var(--border-hover); background-color: var(--bg-card-hover); }
+.charItem.active { border-color: var(--char-accent); background-color: var(--char-accent-dim); }
+
+
+/* ── Thumbnail (colored placeholder + sword overlay) ── */
+
+.charThumb {
+    position: relative;
+    width: 46px;
+    height: 38px;
+    border-radius: 4px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.charThumbImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.charThumbPlaceholder {
+    width: 100%;
+    height: 100%;
+    background-color: var(--char-color, #888);
+    opacity: 0.7;
+}
+
+/* Sword icon — bottom-right of thumbnail */
+.thumbSword {
+    position: absolute;
+    bottom: 2px;
+    right: 3px;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.9);
+    line-height: 1;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    pointer-events: none;
+}
+
+
+/* ── Name label ── */
+
+.charLabel {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.charItem:hover .charLabel  { color: var(--text-primary); }
+.charItem.active .charLabel { color: var(--char-accent); }
+
+.charLabelWrapper {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.charTitle {
+    font-size: 0.65rem;
+    font-weight: 400;
+    color: var(--text-muted, rgba(255, 255, 255, 0.5));
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+}
+
+.charItem:hover .charTitle { color: rgba(255, 255, 255, 0.7); }
+.charItem.active .charTitle { color: rgba(255, 255, 255, 0.65); }
+

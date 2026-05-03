@@ -1,0 +1,85 @@
+[======================================================================================================]
+    "A PASTA ACIMA (zExemplo) É UM EXEMPLO DE COMO VOCÊ DEVE FAZER COM OS OUTROS JOGOS"
+[======================================================================================================]
+
+
+
+
+
+[================= PASTA GEN ==========================================================================]
+
+Existe a pasta "principal" e as "subpastas". 
+A pasta principal serve para você indicar o nome da saga a ser desenvolvida (conjunto de jogos)
+
+'''
+    TheRevoltSaga (principal)
+    ├── Game_1 (subpasta)
+    │   ├── gen (gen)
+    │   └── ... (outras pastas)
+    │
+    ├── Game_2 (subpasta)
+    │   ├── gen (gen)
+    │   └── ... (outras pastas)
+'''
+
+Cada jogo da saga (subpasta) deve ter seu próprio conjunto de arquivos de configuração interno:
+
+'''
+    ├── game_1
+    ├── game_2
+    ├── game_3
+    └── ... 
+'''
+
+Dentro de cada jogo, existe a pasta "gen", que liga os outros arquivos de configuração
+através do arquivo "_game_manager.js", e é possível adicionar "capas para cada jogo" 
+e também imagens para o "carrousel de images" do jogo.
+
+Também é possível informar o "título" e a "sinopse" do jogo lá.
+
+[================= OUTROS ARQUIVOS ====================================================================]
+
+Dentro do arquivo "S1_jornada_completa_data.js" dá para definir a trajetória individual de cada jogo.
+Dentro do arquivo "S2_areas_do_jogo_data.js" define-se as áreas do jogo.
+Dentro do arquivo "S3_monstros_criaturas_data.js" define-se os monstros e criaturas do jogo.
+
+Dentro da pasta "S4_personagens_chefes" define-se os personagens e chefes do jogo.
+Lá é encontrado outra pasta "_Model" que auxilia na estruturação dos personagens e chefes.
+
+[================= PASTA _MODEL =======================================================================]
+
+A pasta "_Model" serve como base para a criação de novos personagens ou chefes.
+Sua estrutura é dividida em:
+
+'''
+    ├──imgs (pasta)         : imagens do personagem
+    ├──js_files (pasta)
+    │   ├──abilities.js    : define as habilidades do personagem
+    │   ├──relations.js    : define as relações do personagem
+    │   └──trajectory.js   : define a trajetória do personagem
+    ├──_character_manager.js   : define o personagem
+'''
+
+Basta copiá-la e substituir as informações para cada personagem ou chefe adicionado.
+
+[================= CAROUSEL DE IMAGENS ================================================================]
+
+Você pode mudar o tempo entre as imagens dos carrosséis alterando o valor da constante 
+"CAROUSEL_INTERVAL" localizada no início do arquivo "ImageSelector.jsx".
+
+'''
+    ├──T02_GameCard (pasta)
+    │   ├──ImageSelector.jsx
+    ├──T03_Characters (pasta)
+    │   ├──ImageSelector.jsx
+'''
+
+[======================================================================================================]
+
+
+
+
+
+[======================================================================================================]
+    "TODAS AS DEMAIS INSTRUÇÕES PODEM SER ENCONTRADAS NOS PRÓPRIOS ARQUIVOS!"
+[======================================================================================================]

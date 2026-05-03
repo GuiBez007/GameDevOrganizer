@@ -1,0 +1,635 @@
+/* ══════════════════════════════════════════════════
+   T02 GameCard — full layout
+   ══════════════════════════════════════════════════ */
+
+/* ── Outer wrapper ─────────────────────────────── */
+
+.cardWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 1366px;
+    margin: 0 auto;
+}
+
+
+/* ── Main card container ────────────────────────── */
+
+.modal {
+    background-color: var(--modal-bg);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7);
+    animation: slideUp 0.22s ease;
+    transition: box-shadow var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.modal:hover {
+    box-shadow: 0 0 24px var(--accent-dim), 0 0 8px var(--accent);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ── Top bar ────────────────────────────────────── */
+
+.topBar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    flex-shrink: 0;
+    min-height: 56px;
+    border-top-left-radius: var(--radius-lg);
+    border-top-right-radius: var(--radius-lg);
+}
+
+/* Close button — top-right of topBar */
+.closeBtn {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color var(--transition), border-color var(--transition);
+}
+
+.closeBtn:hover {
+    color: #ffffff;
+    border-color: #ff3e3e;
+    background-color: #ff3e3e;
+}
+
+/* ── Sidebar edge tabs (float at sidebar boundary) ─────── */
+
+.sidebarEdge {
+    position: absolute;
+    right: 0;
+    /* when sidebar closed: at card right edge */
+    top: 24px;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 10;
+    transition: right 0.2s ease;
+}
+
+.sidebarEdgeOpen {
+    right: 220px;
+    /* same as sidebar open width */
+}
+
+.edgeBtn {
+    width: 26px;
+    height: 34px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-hover);
+    border-right: none;
+    /* flat edge faces the sidebar */
+    border-radius: 6px 0 0 6px;
+    /* rounded on left side only */
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color var(--transition), background-color var(--transition), border-color var(--transition);
+}
+
+.edgeBtn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background-color: var(--accent-dim);
+}
+
+.edgeBtnLocked {
+    border-color: var(--accent) !important;
+    background-color: var(--accent-dim) !important;
+    color: var(--accent) !important;
+}
+
+/* Nav area: grows to fill space, centered content */
+.navArea {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+.navTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+/* Nav buttons row */
+.navButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+}
+
+.navBtn {
+    padding: 5px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.navBtn:hover {
+    border-color: var(--border-hover);
+    background-color: var(--bg-card-hover);
+    color: var(--text-primary);
+}
+
+.navBtnActive {
+    border-color: var(--accent) !important;
+    background-color: var(--accent-dim) !important;
+    color: var(--accent) !important;
+}
+
+.navBtnAction {
+    border-color: var(--border-hover) !important;
+    color: var(--text-primary) !important;
+    margin-left: 8px;
+    position: relative;
+}
+
+.navBtnAction::before {
+    content: '↗';
+    font-size: 0.6rem;
+    position: absolute;
+    top: 3px;
+    right: 4px;
+    opacity: 0.5;
+}
+
+.navBtnAction:hover {
+    border-color: var(--accent) !important;
+    background-color: var(--accent-dim) !important;
+    color: var(--accent) !important;
+}
+
+
+/* ── Body: left | center | sidebar ───────────────── */
+
+.body {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    overflow: hidden;
+    min-height: 420px;
+    max-height: 560px;
+    position: relative;
+    /* edge tabs are absolute children */
+}
+
+
+/* ── Left: cover + image strip ─────────────────── */
+
+.leftSection {
+    width: 260px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.mainCover {
+    flex: 1;
+    background-color: var(--modal-bg);
+    overflow: hidden;
+    position: relative;
+    cursor: zoom-in;
+}
+
+.mainCover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.mainCover:hover img {
+    transform: scale(1.03);
+}
+
+.expandHint {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.45);
+    pointer-events: none;
+    transition: color 0.2s;
+}
+
+.mainCover:hover .expandHint {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.coverPlaceholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 3rem;
+    color: var(--text-muted);
+}
+
+/* Strip wrapper: reduced height */
+.stripWrapper {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    flex-shrink: 0;
+    height: 58px;
+    /* reduced from tall carousel */
+}
+
+.stripArrow {
+    flex-shrink: 0;
+    width: 24px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--transition), background-color var(--transition);
+}
+
+.stripArrow:hover {
+    color: var(--accent);
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.imageStrip {
+    display: flex;
+    gap: 4px;
+    padding: 6px 4px;
+    overflow-x: auto;
+    flex: 1;
+    scroll-behavior: smooth;
+}
+
+.imageStrip::-webkit-scrollbar {
+    height: 2px;
+}
+
+.imageStrip::-webkit-scrollbar-thumb {
+    background-color: var(--border-hover);
+    border-radius: 2px;
+}
+
+.stripThumb {
+    width: 52px;
+    height: 40px;
+    /* reduced height */
+    object-fit: cover;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    flex-shrink: 0;
+    cursor: pointer;
+    opacity: 0.55;
+    transition: border-color var(--transition), opacity var(--transition);
+}
+
+.stripThumb:hover {
+    opacity: 0.82;
+    border-color: var(--border-hover);
+}
+
+.stripThumbActive {
+    border-color: var(--accent) !important;
+    opacity: 1 !important;
+    box-shadow: 0 0 5px var(--accent);
+}
+
+
+/* ── Center: info + action buttons ─────────────── */
+
+.centerSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+    border-right: 1px solid var(--border-color);
+}
+
+/* Title tab (overlaps top of first infoBox) */
+.titleTab {
+    padding: 10px 16px 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    flex-shrink: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Info boxes (description, other info) */
+.infoBox {
+    flex: 1;
+    border: 1px solid var(--border-color);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 12px 16px;
+    background: var(--bg-card);
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.infoLegend {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 12px;
+    background-color: var(--bg-secondary);
+    border-radius: 6px;
+    border: 0.5px solid var(--accent);
+}
+
+
+.infoBox::-webkit-scrollbar {
+    width: 4px;
+}
+
+.infoBox::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.infoBox::-webkit-scrollbar-thumb {
+    background-color: #444;
+    border-radius: 10px;
+}
+
+.infoBox::-webkit-scrollbar-thumb:hover {
+    background-color: #666;
+}
+
+.synopsis {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-weight: 500;
+}
+
+.otherInfo {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+/* Action buttons row */
+.actionButtons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 10px 16px;
+    border-top: 1px solid var(--border-color);
+    flex-shrink: 0;
+    background-color: var(--bg-secondary);
+}
+
+.actionBtn {
+    flex: 1 1 100px;
+    padding: 7px 12px;
+    background-color: transparent;
+    border: 1px solid var(--border-hover);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.actionBtn:hover {
+    border-color: var(--accent);
+    background-color: var(--accent-dim);
+    color: var(--accent);
+}
+
+
+/* ── Sub-page (rendered below card) ─────────────── */
+
+.subPage {
+    background-color: var(--modal-bg);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    animation: slideUp 0.2s ease;
+    min-height: 120px;
+}
+
+.subPageHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+}
+
+.subPageTitle {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.subPageClose {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--transition), border-color var(--transition);
+}
+
+.subPageClose:hover {
+    color: var(--text-primary);
+    border-color: var(--border-hover);
+}
+
+.subPageBody {
+    padding: 28px 24px;
+    background-color: #fff;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ── Lightbox ────────────────────────────────────── */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background-color: rgba(0, 0, 0, 0.88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    animation: fadeIn 0.15s ease;
+}
+
+.lightboxFrame {
+    position: relative;
+    max-width: 80vw;
+    max-height: 85vh;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: default;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.9);
+    animation: zoomIn 0.2s ease;
+}
+
+.lightboxImg {
+    display: block;
+    max-width: 80vw;
+    max-height: 85vh;
+    object-fit: contain;
+}
+
+.lightboxOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 48px 28px 24px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.6) 60%, transparent 100%);
+    transform: translateY(30%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.lightboxFrame:hover .lightboxOverlay {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.lightboxTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.lightboxSynopsis {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.65;
+    max-height: 80px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.93);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.lightboxClose {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1.1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition);
+}
+
+.lightboxClose:hover {
+    background: rgba(255, 255, 255, 0.22);
+}
